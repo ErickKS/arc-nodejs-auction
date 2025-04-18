@@ -3,7 +3,7 @@ import { Auction } from '../../enterprise/entities/auction'
 import { AuctionsRepository } from '../repositories/auctions-repository'
 
 type CreateAuctionUseCaseRequest = {
-  title: 'Test Auction'
+  title: string
   startAmount: 100
   minIncrement: 10
   startDate: Date
