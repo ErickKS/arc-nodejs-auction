@@ -29,6 +29,12 @@ export class CreateBidUseCase {
       return left(new Error('Auction not found'))
     }
 
+    const highestBid = await this.bidRepository.findHighestBidByAuctionId(auctionId)
+
+    if (highestBid && amount <= highestBid.amount + auction.minIncrement) {
+      return left(new Error('Bid amount must be greater than the highest bid plus the minimum increment'))
+    }
+
     const bid = Bid.create({
       auctionId,
       bidderId,

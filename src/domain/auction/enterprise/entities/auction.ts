@@ -16,6 +16,10 @@ export class Auction {
     return this._id
   }
 
+  get minIncrement(): number {
+    return this.props.minIncrement
+  }
+
   private constructor(props: AuctionProps, id?: string) {
     this.props = props
     this._id = id ?? crypto.randomUUID()

@@ -16,6 +16,14 @@ export class Bid {
     return this._id
   }
 
+  get auctionId(): string {
+    return this.props.auctionId
+  }
+
+  get amount(): number {
+    return this.props.amount
+  }
+
   private constructor(props: BidProps, id?: string) {
     this.props = props
     this._id = id ?? crypto.randomUUID()

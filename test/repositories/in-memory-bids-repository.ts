@@ -12,6 +12,16 @@ export class InMemoryBidsRepository implements BidsRepository {
     return bid
   }
 
+  async findHighestBidByAuctionId(auctionId: string): Promise<Bid | null> {
+    const bids = this.bids.filter(bid => bid.auctionId === auctionId)
+
+    if (bids.length === 0) return null
+
+    const highestBid = bids.reduce((prev, current) => (prev.amount > current.amount ? prev : current))
+
+    return highestBid
+  }
+
   async create(bid: Bid): Promise<void> {
     this.bids.push(bid)
   }
